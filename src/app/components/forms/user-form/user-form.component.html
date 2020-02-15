@@ -1,0 +1,27 @@
+<div class="custom-form">
+  <form autocomplete="off" [formGroup]="userForm">
+    <mat-form-field>
+      <input formControlName="name" matInput placeholder="Name" />
+      <mat-error>
+        This field is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input formControlName="email" matInput placeholder="Email" />
+      <mat-error>
+        <ng-container *ngIf="emailControl.hasError('required')">
+          This field is required
+        </ng-container>
+        <ng-container *ngIf="emailControl.hasError('email')">
+          Invalid email
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <button (click)="onSubmit()" color="primary" [disabled]="!userForm.valid"
+      mat-raised-button type="button">
+      Submit
+    </button>
+  </form>
+</div>
